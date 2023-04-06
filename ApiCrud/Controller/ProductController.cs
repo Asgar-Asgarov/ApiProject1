@@ -13,5 +13,12 @@ public class ProductController:ControllerBase
     {
         return StatusCode(200,..)
     }
+
+       [Route("getOne")] 
+       [HttpGet] 
+       public IActionResult GetOne()
+    {
+        return StatusCode(200,..)
+    }
     
 }
