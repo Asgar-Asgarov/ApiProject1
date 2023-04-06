@@ -7,7 +7,8 @@ namespace ApiCrud.Controllers;
 [Route("api/[controller]")]
 [ApiController]
 public class ProductController:ControllerBase
-{
+{  
+    [HttpGet]
     public IActionResult GetAll()
     {
         return StatusCode(200,..)
