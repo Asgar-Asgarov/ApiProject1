@@ -65,4 +65,16 @@ public class ProductController:ControllerBase
 
     }
 
+    [HttpPatch]
+    public IActionResult ChangeStatus(int id,bool IsActive)
+    {
+        var existProduct = _appDbContext.Products.FirstOrDefault(p=>p.Id==id);
+        if(existProduct==null) return StatusCode(StatusCodes.Status404NotFound);
+        existProduct.IsActive=IsActive;
+        _appDbContext.SaveChanges();
+        return StatusCode(StatusCodes.Status204NoContent);
+    }
+
+
+
 }
