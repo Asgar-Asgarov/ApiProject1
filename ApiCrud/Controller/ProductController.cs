@@ -50,4 +50,19 @@ public class ProductController:ControllerBase
         _appDbContext.SaveChanges();
         return StatusCode(StatusCodes.Status204NoContent);
     }
+
+    [HttpPut]
+    public IActionResult UpdateProduct(Product product)
+    {
+       var existProduct = _appDbContext.Products.FirstOrDefault(p=>p.Id==product.Id);
+       if(existProduct==null)return StatusCode(StatusCodes.Status404NotFound);
+       existProduct.Name=product.Name;
+       existProduct.Price=product.Price;
+       existProduct.DiscountPrice=product.DiscountPrice;
+       existProduct.IsActive=product.IsActive;
+        _appDbContext.SaveChanges();
+        return StatusCode(StatusCodes.Status204NoContent);
+
+    }
+
 }
