@@ -28,14 +28,26 @@ public class ProductController:ControllerBase
        public IActionResult GetOne(int id)
     {
         var product = _appDbContext.Products.FirstOrDefault(p=>p.Id==id);
+        if(product==null) return StatusCode(StatusCodes.Status404NotFound);
         return StatusCode(200,product);
     }
     
-
+     [HttpPost]
     public IActionResult AddProduct(Product product)
     {
         _appDbContext.Products.Add(product);
         _appDbContext.SaveChanges();
          return StatusCode(StatusCodes.Status201Created,product);
+    }
+     
+     
+     [HttpDelete("{id}")]
+    public IActionResult DeleteProduct(int id)
+    {
+        var product = _appDbContext.Products.FirstOrDefault(p=>p.Id==id);
+        if(product==null) return StatusCode(StatusCodes.Status404NotFound);
+        _appDbContext.Products.Remove(product);
+        _appDbContext.SaveChanges();
+        return StatusCode(StatusCodes.Status204NoContent);
     }
 }
