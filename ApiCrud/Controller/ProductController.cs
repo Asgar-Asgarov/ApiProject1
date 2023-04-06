@@ -11,14 +11,14 @@ public class ProductController:ControllerBase
     [HttpGet]
     public IActionResult GetAll()
     {
-        return StatusCode(200,..)
+         return Ok(StatusCodes.Status200OK);
     }
 
-       [Route("getOne")] 
-       [HttpGet] 
+      
+       [HttpGet("{id}")] 
        public IActionResult GetOne()
     {
-        return StatusCode(200,..)
+        return Ok(StatusCodes.Status200OK);
     }
     
 }
