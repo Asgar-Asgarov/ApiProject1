@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using ApiCrud.Models;
 using ApiCrud.Data.DAL;
+using ApiCrud.Dtos;
 
 namespace ApiCrud.Controllers;
 
@@ -31,11 +32,19 @@ public class ProductController:BaseController
     }
     
      [HttpPost]
-    public IActionResult AddProduct(Product product)
+    public IActionResult AddProduct(ProductCreateDto productCreateDto)
     {
-        _appDbContext.Products.Add(product);
+        Product newProduct = new Product()
+        {
+            Name=productCreateDto.Name,
+            Price=productCreateDto.Price,
+            DiscountPrice=productCreateDto.DiscountPrice,
+            IsActive=productCreateDto.IsActive
+        };
+
+        _appDbContext.Products.Add(newProduct);
         _appDbContext.SaveChanges();
-         return StatusCode(StatusCodes.Status201Created,product);
+         return StatusCode(StatusCodes.Status201Created,newProduct);
     }
      
      
