@@ -16,10 +16,31 @@ public class ProductController : BaseController
     }
 
     [HttpGet]
-    public IActionResult GetAll()
+    public IActionResult GetAll(int page=1)
     {
-        var products = _appDbContext.Products.ToList();
-        return StatusCode(200, products);
+        var query = _appDbContext.Products
+        .Where(p=>!p.IsDeleted)
+        .ToList();
+        ProductListDto productListDto = new ()
+        {
+            // if (!string.IsNullOrWhiteSpace(search))
+            // {
+            //     query = query.Where(p=>p.Name.Contains(search));
+            // }
+         CurrentPage=page,
+         TotalCount=query.Count(),
+         items = query.Skip((page-1)*2)
+         .Take(2)
+         .Select(p=>new ProductListItemDto 
+         {
+          Name=p.Name,
+          Price=p.Price,
+          DiscountPrice=p.DiscountPrice,
+          CreatedTime=p.CreatedTime,
+          UpdatedTime=p.UpdatedTime  
+         }).ToList()
+        };
+        return StatusCode(200,productListDto);
     }
 
 
