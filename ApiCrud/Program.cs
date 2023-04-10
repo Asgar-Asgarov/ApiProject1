@@ -4,6 +4,7 @@ using ApiCrud.Models;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 
+
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
@@ -18,6 +19,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
 });
+
+builder.Services.AddAutoMapper(typeof(Program)); 
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
