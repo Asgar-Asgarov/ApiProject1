@@ -3,12 +3,19 @@ using Microsoft.AspNetCore.Http;
 using ApiCrud.Models;
 using ApiCrud.Data.DAL;
 using ApiCrud.Dtos;
+using AutoMapper;
 
 namespace ApiCrud.Controllers;
 
 public class ProductController : BaseController
 {
     private readonly AppDbContext _appDbContext;
+    private readonly IMapper _mapper;
+
+    public ProductController(IMapper mapper)
+    {
+        _mapper = mapper;
+    }
 
     public ProductController(AppDbContext appDbContext)
     {
@@ -51,14 +58,13 @@ public class ProductController : BaseController
         .Where(p => !p.IsDeleted)
         .FirstOrDefault(p => p.Id == id);
         if (product == null) return StatusCode(StatusCodes.Status404NotFound);
-        ProductReturnDto productReturnDto = new()
-        {
-            Name = product.Name,
-            Price = product.Price,
-            DiscountPrice = product.DiscountPrice,
-            CreatedTime=product.CreatedTime,
-            UpdatedTime=product.UpdatedTime
-        };
+        ProductReturnDto productReturnDto = _mapper.Map<ProductReturnDto>(product);
+            // Name = product.Name,
+            // Price = product.Price,
+            // DiscountPrice = product.DiscountPrice,
+            // CreatedTime=product.CreatedTime,
+            // UpdatedTime=product.UpdatedTime
+       
 
         return StatusCode(200, productReturnDto);
     }
