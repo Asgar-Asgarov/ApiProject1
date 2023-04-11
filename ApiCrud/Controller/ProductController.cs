@@ -12,14 +12,11 @@ public class ProductController : BaseController
     private readonly AppDbContext _appDbContext;
     private readonly IMapper _mapper;
 
-    public ProductController(IMapper mapper)
-    {
-        _mapper = mapper;
-    }
 
-    public ProductController(AppDbContext appDbContext)
+    public ProductController(AppDbContext appDbContext,IMapper mapper)
     {
         _appDbContext = appDbContext;
+        _mapper = mapper;
     }
 
     [HttpGet]
@@ -58,14 +55,9 @@ public class ProductController : BaseController
         .Where(p => !p.IsDeleted)
         .FirstOrDefault(p => p.Id == id);
         if (product == null) return StatusCode(StatusCodes.Status404NotFound);
+        
         ProductReturnDto productReturnDto = _mapper.Map<ProductReturnDto>(product);
-            // Name = product.Name,
-            // Price = product.Price,
-            // DiscountPrice = product.DiscountPrice,
-            // CreatedTime=product.CreatedTime,
-            // UpdatedTime=product.UpdatedTime
-       
-
+              
         return StatusCode(200, productReturnDto);
     }
 

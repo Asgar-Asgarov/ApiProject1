@@ -6,7 +6,7 @@ namespace ApiCrud.Data.Configurations;
 
 public class MapperConfig : Profile
 {
-    protected MapperConfig()
+   public MapperConfig()
     {
         CreateMap<Product,ProductReturnDto>();
     }

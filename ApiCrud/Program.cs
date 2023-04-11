@@ -1,3 +1,4 @@
+using ApiCrud.Data.Configurations;
 using ApiCrud.Data.DAL;
 using ApiCrud.Dtos;
 using ApiCrud.Models;
@@ -20,7 +21,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(config.GetConnectionString("DefaultConnection"));
 });
 
-builder.Services.AddAutoMapper(typeof(Program)); 
+builder.Services.AddAutoMapper(typeof(MapperConfig)); 
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
