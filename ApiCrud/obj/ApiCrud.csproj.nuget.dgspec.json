@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\FirstApi\\ApiCrud\\ApiCrud.csproj": {}
+    "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\DotNetApi\\ApiCrud\\ApiCrud.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\FirstApi\\ApiCrud\\ApiCrud.csproj": {
+    "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\DotNetApi\\ApiCrud\\ApiCrud.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\FirstApi\\ApiCrud\\ApiCrud.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\DotNetApi\\ApiCrud\\ApiCrud.csproj",
         "projectName": "ApiCrud",
-        "projectPath": "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\FirstApi\\ApiCrud\\ApiCrud.csproj",
+        "projectPath": "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\DotNetApi\\ApiCrud\\ApiCrud.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\FirstApi\\ApiCrud\\obj\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\DotNetApi\\ApiCrud\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

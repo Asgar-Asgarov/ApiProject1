@@ -13,38 +13,38 @@ public class ProductController : BaseController
     private readonly IMapper _mapper;
 
 
-    public ProductController(AppDbContext appDbContext,IMapper mapper)
+    public ProductController(AppDbContext appDbContext, IMapper mapper)
     {
         _appDbContext = appDbContext;
         _mapper = mapper;
     }
 
     [HttpGet]
-    public IActionResult GetAll(int page=1)
+    public IActionResult GetAll(int page ,string search)
     {
         var query = _appDbContext.Products
-        .Where(p=>!p.IsDeleted)
-        .ToList();
-        ProductListDto productListDto = new ()
+        .Where(p => !p.IsDeleted);
+        
+        ProductListDto productListDto = new();
+         productListDto.CurrentPage = page;
+        productListDto.TotalCount = query.Count();
+        if (!string.IsNullOrWhiteSpace(search))
         {
-            // if (!string.IsNullOrWhiteSpace(search))
-            // {
-            //     query = query.Where(p=>p.Name.Contains(search));
-            // }
-         CurrentPage=page,
-         TotalCount=query.Count(),
-         items = query.Skip((page-1)*2)
-         .Take(2)
-         .Select(p=>new ProductListItemDto 
-         {
-          Name=p.Name,
-          Price=p.Price,
-          DiscountPrice=p.DiscountPrice,
-          CreatedTime=p.CreatedTime,
-          UpdatedTime=p.UpdatedTime  
-         }).ToList()
-        };
-        return StatusCode(200,productListDto);
+            query = query.Where(p => p.Name.Contains(search));
+        }
+        
+        productListDto.items = query.Skip((page - 1) * 2)
+       .Take(2)
+       .Select(p => new ProductListItemDto
+       {
+           Name = p.Name,
+           Price = p.Price,
+           DiscountPrice = p.DiscountPrice,
+           CreatedTime = p.CreatedTime,
+           UpdatedTime = p.UpdatedTime
+       }).ToList();
+
+        return StatusCode(200, productListDto);
     }
 
 
@@ -55,19 +55,19 @@ public class ProductController : BaseController
         .Where(p => !p.IsDeleted)
         .FirstOrDefault(p => p.Id == id);
         if (product == null) return StatusCode(StatusCodes.Status404NotFound);
-        
+
         ProductReturnDto productReturnDto = _mapper.Map<ProductReturnDto>(product);
-              
+
         return StatusCode(200, productReturnDto);
     }
 
     [HttpPost]
     public IActionResult AddProduct(ProductCreateDto productCreateDto)
     {
-        Product newProduct = new ();
+        Product newProduct = new();
 
         this._mapper.Map(productCreateDto, newProduct);
-        
+
         _appDbContext.Products.Add(newProduct);
         _appDbContext.SaveChanges();
         return StatusCode(StatusCodes.Status201Created, newProduct);
@@ -89,8 +89,8 @@ public class ProductController : BaseController
     {
         var existProduct = _appDbContext.Products.FirstOrDefault(p => p.Id == id);
         if (existProduct == null) return NotFound();
-       
-       this._mapper.Map(productUpdateDto,existProduct);
+
+        this._mapper.Map(productUpdateDto, existProduct);
 
         _appDbContext.SaveChanges();
         return StatusCode(StatusCodes.Status204NoContent);

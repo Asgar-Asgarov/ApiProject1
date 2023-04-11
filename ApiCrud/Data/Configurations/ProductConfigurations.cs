@@ -13,4 +13,6 @@ public class ProductConfigurations : IEntityTypeConfiguration<Product>
         builder.Property(p=>p.CreatedTime).HasDefaultValueSql("GetUtcDate()");
         builder.Property(p=>p.UpdatedTime).HasDefaultValue(DateTime.UtcNow);
     }
+
+    
 }
