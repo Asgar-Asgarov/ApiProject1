@@ -14,3 +14,5 @@ dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design dotnet add p
 ######//migrations with Visual Studio add-migration yourMigrationName update-database
 #####//for adding migrations add data folder  ( dotnet ef migrations add Initial --context AppDbContext -o Data/Migrations)
 #####// dotnet add package FluentValidation.AspNetCore
+#####// Packes For AutoMap  dotnet add package AutoMapper
+dotnet add package AutoMapper.Extensions.Microsoft.DependencyInjection
