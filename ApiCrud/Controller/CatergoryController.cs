@@ -12,12 +12,13 @@ public class CatergoryController : BaseController
 {
     private readonly AppDbContext _appDbContext;
     private readonly IMapper _mapper;
+    private readonly IWebHostEnvironment _webHostEnviroment;
 
-
-    public CatergoryController(AppDbContext appDbContext, IMapper mapper)
+    public CatergoryController(AppDbContext appDbContext, IMapper mapper,IWebHostEnvironment webHostEnviroment)
     {
         _appDbContext = appDbContext;
         _mapper = mapper;
+        _webHostEnviroment = webHostEnviroment;
     }
 
     [HttpGet]
@@ -67,14 +68,12 @@ public class CatergoryController : BaseController
     public IActionResult AddCategory([FromForm]CategoryCreateDto categoryCreateDto)
     {
         if (categoryCreateDto.Photo==null) return StatusCode(StatusCodes.Status409Conflict);
-        if (categoryCreateDto.Photo.isImage())
-        {
-            
-        }
+        if (!categoryCreateDto.Photo.isImage()) return BadRequest("photo type deyil");
+        if(!categoryCreateDto.Photo.CheckImageSize(10))return BadRequest("size duzgun deyil");
         Category newCategory = new();
 
         this._mapper.Map(categoryCreateDto, newCategory);
-        newCategory.ImageUrl="lorem";
+        newCategory.ImageUrl=categoryCreateDto.Photo.SaveImage(_webHostEnviroment,"img",categoryCreateDto.Photo.FileName);
 
         _appDbContext.Categories.Add(newCategory);
         _appDbContext.SaveChanges();
