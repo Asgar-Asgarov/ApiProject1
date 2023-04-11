@@ -1,11 +1,37 @@
 {
   "Version": 1,
-  "Hash": "O5TeEgZlNb2wCtDprgoHbxsThWNGordPhD/ZZu5kW/w=",
+  "Hash": "r6Na/WLgkA8G/7EHTuAtVJ+F7VlOa5Yh8TXIB5QLXh4=",
   "Source": "ApiCrud",
   "BasePath": "_content/ApiCrud",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "ApiCrud\\wwwroot",
+      "Source": "ApiCrud",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\DotNetApi\\ApiCrud\\wwwroot\\",
+      "BasePath": "_content/ApiCrud",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\DotNetApi\\ApiCrud\\wwwroot\\img\\nature.jpg",
+      "SourceId": "ApiCrud",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\DotNetApi\\ApiCrud\\wwwroot\\",
+      "BasePath": "_content/ApiCrud",
+      "RelativePath": "img/nature.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\nature.jpg"
+    }
+  ]
 }

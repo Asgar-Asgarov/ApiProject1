@@ -4,6 +4,7 @@ using ApiCrud.Models;
 using ApiCrud.Data.DAL;
 using ApiCrud.Dtos;
 using AutoMapper;
+using ApiCrud.Extensions;
 
 namespace ApiCrud.Controllers;
 
@@ -39,7 +40,7 @@ public class CatergoryController : BaseController
        {
            Name = c.Name,
            Desc=c.Desc,
-           ImageUrl=c.ImageUrl,
+           ImageUrl="http://localhost:5261/img/"+c.ImageUrl,
            CreatedTime = c.CreatedTime,
            UpdatedTime = c.UpdatedTime
        }).ToList();
@@ -57,16 +58,23 @@ public class CatergoryController : BaseController
         if (category == null) return StatusCode(StatusCodes.Status404NotFound);
 
         CategoryReturnDto categoryReturnDto = _mapper.Map<CategoryReturnDto>(category);
+        categoryReturnDto.ImageUrl="http://localhost:5261/img/"+category.ImageUrl;
 
         return StatusCode(200, categoryReturnDto);
     }
 
     [HttpPost]
-    public IActionResult AddCategory(CategoryCreateDto categoryCreateDto)
+    public IActionResult AddCategory([FromForm]CategoryCreateDto categoryCreateDto)
     {
+        if (categoryCreateDto.Photo==null) return StatusCode(StatusCodes.Status409Conflict);
+        if (categoryCreateDto.Photo.isImage())
+        {
+            
+        }
         Category newCategory = new();
 
         this._mapper.Map(categoryCreateDto, newCategory);
+        newCategory.ImageUrl="lorem";
 
         _appDbContext.Categories.Add(newCategory);
         _appDbContext.SaveChanges();

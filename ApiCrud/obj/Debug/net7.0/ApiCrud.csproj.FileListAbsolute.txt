@@ -236,3 +236,4 @@ C:\Users\User\Desktop\backend projects\.2.Api-Backend-projects\DotNetApi\ApiCrud
 C:\Users\User\Desktop\backend projects\.2.Api-Backend-projects\DotNetApi\ApiCrud\obj\Debug\net7.0\ApiCrud.pdb
 C:\Users\User\Desktop\backend projects\.2.Api-Backend-projects\DotNetApi\ApiCrud\obj\Debug\net7.0\ApiCrud.genruntimeconfig.cache
 C:\Users\User\Desktop\backend projects\.2.Api-Backend-projects\DotNetApi\ApiCrud\obj\Debug\net7.0\ref\ApiCrud.dll
+C:\Users\User\Desktop\backend projects\.2.Api-Backend-projects\DotNetApi\ApiCrud\bin\Debug\net7.0\ApiCrud.staticwebassets.runtime.json
