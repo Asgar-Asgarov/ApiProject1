@@ -64,14 +64,10 @@ public class ProductController : BaseController
     [HttpPost]
     public IActionResult AddProduct(ProductCreateDto productCreateDto)
     {
-        Product newProduct = new Product()
-        {
-            Name = productCreateDto.Name,
-            Price = productCreateDto.Price,
-            DiscountPrice = productCreateDto.DiscountPrice,
-            IsActive = productCreateDto.IsActive
-        };
+        Product newProduct = new ();
 
+        this._mapper.Map(productCreateDto, newProduct);
+        
         _appDbContext.Products.Add(newProduct);
         _appDbContext.SaveChanges();
         return StatusCode(StatusCodes.Status201Created, newProduct);
