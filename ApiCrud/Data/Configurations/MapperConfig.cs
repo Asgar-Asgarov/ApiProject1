@@ -6,11 +6,16 @@ namespace ApiCrud.Data.Configurations;
 
 public class MapperConfig : Profile
 {
-   public MapperConfig()
+    public MapperConfig()
     {
-        CreateMap<Product,ProductReturnDto>();
-        CreateMap<Product,ProductCreateDto>().ReverseMap();
-        CreateMap<Product,ProductUpdateDto>().ReverseMap();
-        
+        CreateMap<Product, ProductReturnDto>();
+        CreateMap<Product, ProductCreateDto>().ReverseMap();
+        CreateMap<Product, ProductUpdateDto>().ReverseMap();
+
+
+        CreateMap<Category, CategoryReturnDto>();
+        CreateMap<Category, CategoryCreateDto>().ReverseMap();
+        CreateMap<Category, CategoryUpdateDto>().ReverseMap();
+
     }
 }
