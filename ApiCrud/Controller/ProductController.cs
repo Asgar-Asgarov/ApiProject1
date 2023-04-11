@@ -89,10 +89,9 @@ public class ProductController : BaseController
     {
         var existProduct = _appDbContext.Products.FirstOrDefault(p => p.Id == id);
         if (existProduct == null) return NotFound();
-        existProduct.Name = productUpdateDto.Name;
-        existProduct.Price = productUpdateDto.Price;
-        existProduct.DiscountPrice = productUpdateDto.DiscountPrice;
-        existProduct.IsActive = productUpdateDto.IsActive;
+       
+       this._mapper.Map(productUpdateDto,existProduct);
+
         _appDbContext.SaveChanges();
         return StatusCode(StatusCodes.Status204NoContent);
 
