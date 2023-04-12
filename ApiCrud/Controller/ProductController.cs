@@ -27,7 +27,8 @@ public class ProductController : BaseController
     public IActionResult GetAll(int page, string search)
     {
         var query = _appDbContext.Products
-        .Include(p=>p.Category)    
+        .Include(p=>p.Category)
+        .ThenInclude(c=>c.Products)    
         .Where(p => !p.IsDeleted);
 
         ProductListDto productListDto = new();
