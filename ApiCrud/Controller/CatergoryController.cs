@@ -5,6 +5,7 @@ using ApiCrud.Data.DAL;
 using ApiCrud.Dtos;
 using AutoMapper;
 using ApiCrud.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiCrud.Controllers;
 
@@ -54,12 +55,13 @@ public class CatergoryController : BaseController
     public IActionResult GetOne(int id)
     {
         var category = _appDbContext.Categories
+        .Include(category=>category.Products)
         .Where(c => !c.IsDeleted)
         .FirstOrDefault(c => c.Id == id);
         if (category == null) return StatusCode(StatusCodes.Status404NotFound);
 
         CategoryReturnDto categoryReturnDto = _mapper.Map<CategoryReturnDto>(category);
-        categoryReturnDto.ImageUrl="http://localhost:5261/img/"+category.ImageUrl;
+        // categoryReturnDto.ImageUrl="http://localhost:5261/img/"+category.ImageUrl;
 
         return StatusCode(200, categoryReturnDto);
     }

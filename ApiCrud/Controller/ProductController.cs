@@ -5,6 +5,7 @@ using ApiCrud.Data.DAL;
 using ApiCrud.Dtos;
 using AutoMapper;
 using ApiCrud.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiCrud.Controllers;
 
@@ -26,6 +27,7 @@ public class ProductController : BaseController
     public IActionResult GetAll(int page, string search)
     {
         var query = _appDbContext.Products
+        .Include(p=>p.Category)    
         .Where(p => !p.IsDeleted);
 
         ProductListDto productListDto = new();
@@ -56,6 +58,7 @@ public class ProductController : BaseController
     public IActionResult GetOne(int id)
     {
         var product = _appDbContext.Products
+        .Include(p=>p.Category)
         .Where(p => !p.IsDeleted)
         .FirstOrDefault(p => p.Id == id);
         if (product == null) return StatusCode(StatusCodes.Status404NotFound);
@@ -71,6 +74,11 @@ public class ProductController : BaseController
         if (productCreateDto.Photo == null) return StatusCode(StatusCodes.Status409Conflict);
         if (!productCreateDto.Photo.isImage()) return BadRequest("photo type deyil");
         if (!productCreateDto.Photo.CheckImageSize(10)) return BadRequest("size duzgun deyil");
+        var category=_appDbContext.Categories
+        .Where(c=>!c.IsDeleted)
+        .FirstOrDefault(c=>c.Id==productCreateDto.CategoryId);
+        if(category==null)return StatusCode(StatusCodes.Status404NotFound);
+
         Product newProduct = new();
 
         this._mapper.Map(productCreateDto, newProduct);
@@ -78,7 +86,7 @@ public class ProductController : BaseController
 
         _appDbContext.Products.Add(newProduct);
         _appDbContext.SaveChanges();
-        return StatusCode(StatusCodes.Status201Created, newProduct);
+        return StatusCode(StatusCodes.Status201Created);
     }
 
 

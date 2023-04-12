@@ -1,6 +1,14 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\DotNetApi\\ApiCrud\\wwwroot\\img\\be8d38d7-e0b6-4460-b188-93b8edbfdcb6cat.jpg",
+      "PackagePath": "staticwebassets\\img\\be8d38d7-e0b6-4460-b188-93b8edbfdcb6cat.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\DotNetApi\\ApiCrud\\wwwroot\\img\\f842902c-a590-4284-892a-520453bf189cdeer.jpg",
+      "PackagePath": "staticwebassets\\img\\f842902c-a590-4284-892a-520453bf189cdeer.jpg"
+    },
+    {
       "Id": "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\DotNetApi\\ApiCrud\\wwwroot\\img\\nature.jpg",
       "PackagePath": "staticwebassets\\img\\nature.jpg"
     },

@@ -17,7 +17,7 @@ public class CategoryCreateDtoValidator : AbstractValidator<CategoryCreateDto>
         .MaximumLength(50).WithMessage("50 den boyuk olmaz")
         .NotNull().WithMessage("Bosh qoymaq olmaz");
            RuleFor(c=>c.Desc)
-        .MaximumLength(50).WithMessage("50 den boyuk olmaz")
+        .MaximumLength(300).WithMessage("300 den boyuk olmaz")
         .NotNull().WithMessage("Bosh qoymaq olmaz");
     }
 }

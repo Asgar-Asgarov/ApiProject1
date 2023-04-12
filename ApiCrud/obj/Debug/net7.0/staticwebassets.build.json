@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "r6Na/WLgkA8G/7EHTuAtVJ+F7VlOa5Yh8TXIB5QLXh4=",
+  "Hash": "Zt2cmdALTbOteR81z62r2uQswxT874ACd7n7q33kWKo=",
   "Source": "ApiCrud",
   "BasePath": "_content/ApiCrud",
   "Mode": "Default",
@@ -16,6 +16,40 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\DotNetApi\\ApiCrud\\wwwroot\\img\\be8d38d7-e0b6-4460-b188-93b8edbfdcb6cat.jpg",
+      "SourceId": "ApiCrud",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\DotNetApi\\ApiCrud\\wwwroot\\",
+      "BasePath": "_content/ApiCrud",
+      "RelativePath": "img/be8d38d7-e0b6-4460-b188-93b8edbfdcb6cat.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\be8d38d7-e0b6-4460-b188-93b8edbfdcb6cat.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\DotNetApi\\ApiCrud\\wwwroot\\img\\f842902c-a590-4284-892a-520453bf189cdeer.jpg",
+      "SourceId": "ApiCrud",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\DotNetApi\\ApiCrud\\wwwroot\\",
+      "BasePath": "_content/ApiCrud",
+      "RelativePath": "img/f842902c-a590-4284-892a-520453bf189cdeer.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\img\\f842902c-a590-4284-892a-520453bf189cdeer.jpg"
+    },
     {
       "Identity": "C:\\Users\\User\\Desktop\\backend projects\\.2.Api-Backend-projects\\DotNetApi\\ApiCrud\\wwwroot\\img\\nature.jpg",
       "SourceId": "ApiCrud",

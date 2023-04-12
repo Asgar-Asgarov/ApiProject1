@@ -13,7 +13,8 @@ public class MapperConfig : Profile
         CreateMap<Product, ProductUpdateDto>().ReverseMap();
 
 
-        CreateMap<Category, CategoryReturnDto>();
+        CreateMap<Category, CategoryReturnDto>()
+        .ForMember(d=>d.ImageUrl,map=>map.MapFrom(src=>"http://localhost:5261/img/"+src.ImageUrl));
         CreateMap<Category, CategoryCreateDto>().ReverseMap();
         CreateMap<Category, CategoryUpdateDto>().ReverseMap();
 

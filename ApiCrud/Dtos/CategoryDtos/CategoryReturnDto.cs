@@ -7,4 +7,5 @@ public class CategoryReturnDto
     public string? ImageUrl { get; set; }
     public DateTime CreatedTime { get; set; }
     public DateTime UpdatedTime { get; set; }
+    
 }

@@ -3,7 +3,7 @@ namespace ApiCrud.Dtos;
 
 public class ProductCreateDto
 {  
-    public int? CategoryId { get; set; }
+    public int CategoryId { get; set; }
     public string? Name { get; set; }
     public IFormFile? Photo { get; set; }
     public double Price { get; set; }
