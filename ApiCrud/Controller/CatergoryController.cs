@@ -61,7 +61,7 @@ public class CatergoryController : BaseController
         if (category == null) return StatusCode(StatusCodes.Status404NotFound);
 
         CategoryReturnDto categoryReturnDto = _mapper.Map<CategoryReturnDto>(category);
-        // categoryReturnDto.ImageUrl="http://localhost:5261/img/"+category.ImageUrl;
+      
 
         return StatusCode(200, categoryReturnDto);
     }

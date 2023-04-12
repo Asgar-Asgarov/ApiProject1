@@ -64,16 +64,16 @@ public class ProductController : BaseController
         if (product == null) return StatusCode(StatusCodes.Status404NotFound);
 
         ProductReturnDto productReturnDto = _mapper.Map<ProductReturnDto>(product);
-        productReturnDto.ImageUrl = "http://localhost:5261/img/" + product.ImageUrl;
+        
         return StatusCode(200, productReturnDto);
     }
 
     [HttpPost]
     public IActionResult AddProduct(ProductCreateDto productCreateDto)
     {
-        if (productCreateDto.Photo == null) return StatusCode(StatusCodes.Status409Conflict);
-        if (!productCreateDto.Photo.isImage()) return BadRequest("photo type deyil");
-        if (!productCreateDto.Photo.CheckImageSize(10)) return BadRequest("size duzgun deyil");
+        // if (productCreateDto.Photo == null) return StatusCode(StatusCodes.Status409Conflict);
+        // if (!productCreateDto.Photo.isImage()) return BadRequest("photo type deyil");
+        // if (!productCreateDto.Photo.CheckImageSize(10)) return BadRequest("size duzgun deyil");
         var category=_appDbContext.Categories
         .Where(c=>!c.IsDeleted)
         .FirstOrDefault(c=>c.Id==productCreateDto.CategoryId);
@@ -82,7 +82,7 @@ public class ProductController : BaseController
         Product newProduct = new();
 
         this._mapper.Map(productCreateDto, newProduct);
-        newProduct.ImageUrl = productCreateDto.Photo.SaveImage(_webHostEnviroment, "img", productCreateDto.Photo.FileName);
+        // newProduct.ImageUrl = productCreateDto.Photo.SaveImage(_webHostEnviroment, "img", productCreateDto.Photo.FileName);
 
         _appDbContext.Products.Add(newProduct);
         _appDbContext.SaveChanges();
