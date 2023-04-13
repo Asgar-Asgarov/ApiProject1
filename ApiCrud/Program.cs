@@ -3,6 +3,7 @@ using ApiCrud.Data.DAL;
 using ApiCrud.Dtos;
 using ApiCrud.Models;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -22,6 +23,23 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 });
 
 builder.Services.AddAutoMapper(typeof(MapperConfig)); 
+
+builder.Services.AddIdentity<AppUser,IdentityRole>(options=>{
+            options.Password.RequiredLength=6;
+            options.Password.RequireNonAlphanumeric=true;
+            options.Password.RequireDigit=true;
+            options.Password.RequireLowercase=true;
+            options.Password.RequireUppercase=true;
+
+            // options.User.RequireUniqueEmail=true;
+
+
+            options.Lockout.DefaultLockoutTimeSpan=TimeSpan.FromMinutes(20);
+            options.Lockout.AllowedForNewUsers=true;
+            options.Lockout.MaxFailedAccessAttempts=3;
+        }
+
+        ).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
 
 var app = builder.Build();

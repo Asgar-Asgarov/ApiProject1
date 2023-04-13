@@ -1,10 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using ApiCrud.Models;
 using System.Reflection;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace ApiCrud.Data.DAL;
 
-public class AppDbContext : DbContext
+public class AppDbContext :IdentityDbContext<AppUser> 
 {
     public AppDbContext(DbContextOptions options) : base(options)
     {
