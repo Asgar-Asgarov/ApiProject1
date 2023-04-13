@@ -14,10 +14,12 @@ namespace ApiCrud.Controller;
 public class AccountController : BaseController
 {
     private readonly UserManager<AppUser> _userManager;
+    private readonly IConfiguration _configuration;
 
-    public AccountController(UserManager<AppUser> userManager)
+    public AccountController(UserManager<AppUser> userManager,IConfiguration configuration)
     {
         _userManager = userManager;
+        _configuration = configuration;
     }
 
     public async Task<IActionResult> Register(RegisterDto registerDto)
@@ -37,5 +39,12 @@ public class AccountController : BaseController
 
         return StatusCode(201);
     }
-}
+
+
+    public async Task<IActionResult> Login(LoginDto loginDto)
+    {
+
+        return StatusCode(201);
+    };
+ }
 
