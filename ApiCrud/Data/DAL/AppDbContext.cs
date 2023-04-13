@@ -18,5 +18,13 @@ public class AppDbContext :IdentityDbContext<AppUser>
     {   
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         base.OnModelCreating(modelBuilder);
+
+
+        //Use seed
+        modelBuilder.Seed();
     }
+    
+    
+
+    
 }
