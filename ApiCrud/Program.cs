@@ -1,11 +1,13 @@
+using System.Text;
 using ApiCrud.Data.Configurations;
 using ApiCrud.Data.DAL;
 using ApiCrud.Dtos;
 using ApiCrud.Models;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -42,6 +44,28 @@ builder.Services.AddIdentity<AppUser,IdentityRole>(options=>{
         ).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
 
+  builder.Services.AddAuthentication(x =>
+	{
+		x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+		x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+	}).AddJwtBearer(o =>
+	{
+		var Key = Encoding.UTF8.GetBytes(config["JWT:SecretKey"]);
+		o.SaveToken = true;
+		o.TokenValidationParameters = new TokenValidationParameters
+		{
+			ValidateIssuer = true,
+			ValidateAudience = true,
+			ValidateLifetime = true,
+			ValidateIssuerSigningKey = true,
+			ValidIssuer = config["JWT:Issuer"],
+			ValidAudience = config["JWT:Audience"],
+			IssuerSigningKey = new SymmetricSecurityKey(Key)
+		};
+	});
+     
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -56,6 +80,7 @@ app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

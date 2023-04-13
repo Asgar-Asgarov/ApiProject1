@@ -6,6 +6,7 @@ using ApiCrud.Dtos;
 using AutoMapper;
 using ApiCrud.Extensions;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ApiCrud.Controllers;
 
@@ -24,6 +25,7 @@ public class ProductController : BaseController
     }
 
     [HttpGet]
+    [Authorize]
     public IActionResult GetAll(int page, string search)
     {
         var query = _appDbContext.Products
